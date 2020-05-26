@@ -49,7 +49,7 @@ services:
       - ./server:/home/indy/server
       - webserver-cli:/home/indy/.indy-cli
       - webserver-ledger:/home/indy/ledger
-
+    
   #
   # Synchronization test
   #
@@ -114,6 +114,8 @@ services:
       - RUST_LOG=${RUST_LOG}
     volumes:
       - node1-data:/home/indy/ledger
+    depends_on:
+      - webserver
 
   node2:
     image: von-network-base
@@ -131,6 +133,8 @@ services:
       - RUST_LOG=${RUST_LOG}
     volumes:
       - node2-data:/home/indy/ledger
+    depends_on:
+      - webserver
 
   node3:
     image: von-network-base
@@ -148,6 +152,8 @@ services:
       - RUST_LOG=${RUST_LOG}
     volumes:
       - node3-data:/home/indy/ledger
+    depends_on:
+      - webserver
 
   node4:
     image: von-network-base
@@ -165,6 +171,8 @@ services:
       - RUST_LOG=${RUST_LOG}
     volumes:
       - node4-data:/home/indy/ledger
+    depends_on:
+      - webserver
 
 networks:
   von:
